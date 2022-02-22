@@ -1,8 +1,4 @@
-# Default config for sway
-#
-# Copy this to ~/.config/sway/config and edit it to your liking.
-#
-# Read `man 5 sway` for a complete reference.
+font pango:CaskaydiaCove 10
 
 ### Variables
 #
@@ -21,9 +17,8 @@ set $term alacritty
 set $menu sirula
 
 ### Output configuration
-#
-# Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg /usr/share/backgrounds/current.png fill
+output * bg /usr/share/backgrounds/current.png fill #000000
+
 #
 # Example configuration:
 #
@@ -76,13 +71,6 @@ output * bg /usr/share/backgrounds/current.png fill
 
     # Start your launcher
     bindsym $mod+space exec $menu
-
-    # Drag floating windows by holding down $mod and left mouse button.
-    # Resize them with right mouse button + $mod.
-    # Despite the name, also works for non-floating windows.
-    # Change normal to inverse to use left mouse button for resizing and right
-    # mouse button for dragging.
-    floating_modifier $mod normal
 
     # Reload the configuration file
     bindsym $mod+Shift+c reload
@@ -151,7 +139,6 @@ output * bg /usr/share/backgrounds/current.png fill
 
     # Switch the current container between different layout styles
     bindsym $mod+s layout stacking
-    bindsym $mod+w layout tabbed
     bindsym $mod+e layout toggle split
 
     # Make the current focus fullscreen
@@ -165,18 +152,6 @@ output * bg /usr/share/backgrounds/current.png fill
 
     # Move focus to the parent container
     bindsym $mod+a focus parent
-#
-# Scratchpad:
-#
-    # Sway has a "scratchpad", which is a bag of holding for windows.
-    # You can send windows there and get them back later.
-
-    # Move the currently focused window to the scratchpad
-    bindsym $mod+Shift+minus move scratchpad
-
-    # Show the next scratchpad window or hide the focused scratchpad window.
-    # If there are multiple scratchpad windows, this command cycles through them.
-    bindsym $mod+minus scratchpad show
 #
 # Resizing containers:
 #
@@ -203,11 +178,16 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 #
-# Status Bar:
+# Windows Changes
 #
-# Read `man 5 sway-bar` for more information about this section.
+client.focused #ff4747 #ff4747 #ffffff
+client.unfocused #000000 #000000 #ffffff
+for_window [title=".*"] border normal 1
+for_window [title=".*"] title_align center
+for_window [title=".*"] title_format '<b>%title</b>'
+
+for_window [app_id=".*Alacritty.*"] opacity 0.8
+
 bar {
     swaybar_command waybar
 }
-font pango:CaskaydiaCove
-include /etc/sway/config.d/*
