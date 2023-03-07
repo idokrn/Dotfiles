@@ -1,7 +1,64 @@
-add_newline = true
+format = """
+[](#DA627D)\
+$directory\
+[](fg:#DA627D bg:#66bd83)\
+$git_branch\
+$git_status\
+[](fg:#66bd83 bg:#f5b75f)\
+$aws\
+[](fg:#f5b75f bg:#5f99f5)\
+$kubernetes\
+[](fg:#5f99f5 bg:#33658A)\
+$time\
+[ ](fg:#33658A)\
+$python\
+$cmd_duration\
+\n$character
+"""
 
-[character]
-success_symbol = "[](bold green)"
-error_symbol =  "[](bold red)"
+add_newline = false
 
+[directory]
+style = "bg:#DA627D fg:black"
+format = "[$path ]($style)"
+truncation_length = 3
+truncation_symbol = "…/"
 
+[python]
+symbol = "  "
+
+[git_branch]
+symbol = ""
+style = "bg:#FCA17D"
+format = '[[ $symbol $branch ](fg:black bg:#66bd83)]($style)'
+
+[git_status]
+style = "bg:#FCA17D"
+format = '[[($all_status$ahead_behind )](fg:black bg:#66bd83)]($style)'
+
+[aws]
+style = "bg:#5f99f5"
+symbol = " "
+format = '[[ $symbol ($profile )(\($region\) )(\[$duration\] )](fg:black bg:#f5b75f)]($style)'
+
+[aws.region_aliases]
+eu-central-1    = "eu1"
+us-east-1       = "use1"
+
+[kubernetes]
+disabled = false
+style = "bg:#5f99f5"
+format = '[[ $symbol$context \($namespace\) ](fg:black bg:#5f99f5)]($style)'
+symbol = "ﴱ "
+
+[kubernetes.context_aliases]
+".*PROD-USE$" = "PROD"
+".*TEST$" = "TEST"
+".*INT$" = "INT"
+".*FDD$" = "FDD"
+
+[time]
+disabled = false
+time_format = "%R" # Hour:Minute Format
+style = "bg:#33658A"
+format = '[[$time](fg:black bg:#33658A)]($style)'

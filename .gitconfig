@@ -1,0 +1,13 @@
+[user]
+	email = idok@viber.com
+	name = Ido Koren
+[diff]
+	tool = vimdiff
+[alias]
+	pushd = push -u origin HEAD
+[push]
+	autoSetupRemote = true
+[remote "origin"]
+	prune = true
+[init]
+	templatedir = /Users/idok/.git-template
